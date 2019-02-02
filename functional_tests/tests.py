@@ -13,9 +13,9 @@ MAX_WAIT = 10
 class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
-        option = Options()
-        option.headless = True
-        self.browser = webdriver.Firefox(options=option)
+        self.option = Options()
+        self.option.headless = True
+        self.browser = webdriver.Firefox(options=self.option)
 
     def tearDown(self):
         self.browser.quit()
@@ -81,7 +81,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Now here comes Francis
         self.browser.quit()
-        self.browser.Firefox()
+        self.browser = webdriver.Firefox(options=self.option)
 
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
